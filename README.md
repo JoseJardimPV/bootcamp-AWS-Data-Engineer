@@ -105,6 +105,26 @@ spark-submit --packages io.delta:delta-core_2.12:2.0.0 --conf "spark.sql.extensi
 - Usar os data catalog com o caminho o URI do objeto: `s3://teste-872226808963/orders/`
 - *Sempre usar a barra no final para informar o data store.*
 - Usar Natives tables
+- Adicionar função que permite ao crawler acessar o bucket
+
+
+```console
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "s3:PutObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::processed-bucket-bootcamp-404614160688/*"
+            ]
+        }
+    ]
+}
+```
 
 ## Athena
 - **Importante**: Alterar o engine para usar athena 3.0 (tabelas delta)
